@@ -14,26 +14,26 @@ import (
 
 // InitialMigration Initialize migration
 func InitialMigration() {
-	DatabaseUsername := os.Getenv("DATABASE_USERNAME")
-	DatabasePassword := os.Getenv("DATABASE_PASSWORD")
-	DatabaseName := os.Getenv("DATABASE_NAME")
-	DatabaseHost := os.Getenv("DATABASE_HOST")
-	DatabasePort := os.Getenv("DATABASE_PORT")
+// 	DatabaseUsername := os.Getenv("DATABASE_USERNAME")
+// 	DatabasePassword := os.Getenv("DATABASE_PASSWORD")
+// 	DatabaseName := os.Getenv("DATABASE_NAME")
+// 	DatabaseHost := os.Getenv("DATABASE_HOST")
+// 	DatabasePort := os.Getenv("DATABASE_PORT")
 
-	newURI := "host=" + DatabaseHost + " port=" + DatabasePort + " user=" + DatabaseUsername + " dbname=" + DatabaseName + " sslmode=disable password=" + DatabasePassword
-	db, err := gorm.Open("postgres", newURI)
-	if err != nil {
-		log.Err(err).Msg("Database Error")
-		panic(err)
-	}
+// 	newURI := "host=" + DatabaseHost + " port=" + DatabasePort + " user=" + DatabaseUsername + " dbname=" + DatabaseName + " sslmode=disable password=" + DatabasePassword
+// 	db, err := gorm.Open("postgres", newURI)
+// 	if err != nil {
+// 		log.Err(err).Msg("Database Error")
+// 		panic(err)
+// 	}
 
-	// // temporary SQLite for ease of development
-	// db, err := gorm.Open("sqlite3", "kwoc.db")
-	// if err != nil {
-	// 	log.Err(err).Msg("Database Error")
-	// 	panic("failed to connect database")
-	// }
-	// defer db.Close()
+	 // temporary SQLite for ease of development
+	 db, err := gorm.Open("sqlite3", "kwoc.db")
+	 if err != nil {
+	 	log.Err(err).Msg("Database Error")
+	 	panic("failed to connect database")
+	 }
+	 defer db.Close()
 
 	db.AutoMigrate(&models.Mentor{})
 	db.AutoMigrate(&models.Student{})
